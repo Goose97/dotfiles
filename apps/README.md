@@ -3,6 +3,10 @@
 ### Google Chrome
 - Link: https://www.google.com/chrome/
 
+### Communications
+- Slack: https://slack.com/
+- Discord: https://discord.com/
+
 ### Karabiner-Elements (keyboard-mouse binding)
 - Link: https://karabiner-elements.pqrs.org/
 - Config file: ./karabiner.json
