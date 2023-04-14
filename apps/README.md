@@ -23,3 +23,6 @@
 
 ### Fonts
 - Fira Code: https://github.com/tonsky/FiraCode/
+
+### Nix
+- Link: https://nixos.org/download.html#nix-install-macos
