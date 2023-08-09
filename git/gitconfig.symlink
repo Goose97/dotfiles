@@ -17,12 +17,21 @@
 [core]
         excludesfile = ~/.gitignore
         editor = vim
+        pager = delta
+[interactive]
+        diffFilter = delta --color-only
+[delta]
+        navigate = true
 [apply]
         whitespace = nowarn
 [mergetool]
         keepBackup = false
+[merge]
+        conflictstyle = diff3
 [difftool]
         prompt = false
+[diff]
+        colorMoved = default
 [help]
         autocorrect = 1
 [push]
