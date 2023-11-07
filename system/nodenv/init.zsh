@@ -1,2 +1,1 @@
-eval "$(nodenv init -)"
-export PATH="$HOME/.yarn/bin:$PATH"
+export PATH="$HOME/.nodenv/shims:$PATH"
