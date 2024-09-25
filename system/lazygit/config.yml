@@ -4,3 +4,14 @@ git:
   paging:
     colorArg: always
     pager: delta --dark --paging=never
+gui:
+  theme:
+    activeBorderColor:
+      - yellow
+      - bold
+    selectedLineBgColor:
+      # color8 from Tokyo Night Storm theme
+      - '#414868'
+    defaultFgColor:
+      # color15 from Tokyo Night Storm theme
+      - '#c0caf5'
