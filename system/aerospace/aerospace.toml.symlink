@@ -52,11 +52,11 @@ on-focused-monitor-changed = ['move-mouse monitor-lazy-center']
 #                 Monitor pattern is the same as for 'workspace-to-monitor-force-assignment'.
 #                 See: https://nikitabobko.github.io/AeroSpace/guide#assign-workspaces-to-monitors
 [gaps]
-inner.horizontal = 8
-inner.vertical =   8
+inner.horizontal = 0
+inner.vertical =   0
 outer.left =       0
 outer.bottom =     0
-outer.top =        40
+outer.top =        0
 outer.right =      0
 
 # 'main' binding mode declaration
@@ -78,15 +78,6 @@ outer.right =      0
 # All possible modifiers: cmd, alt, ctrl, shift
 
 # All possible commands: https://nikitabobko.github.io/AeroSpace/commands
-
-# See: https://nikitabobko.github.io/AeroSpace/commands#exec-and-forget
-# You can uncomment the following lines to open up terminal with alt + enter shortcut (like in i3)
-# alt-enter = '''exec-and-forget osascript -e '
-# tell application "Terminal"
-#     do script
-#     activate
-# end tell'
-# '''
 
 # See: https://nikitabobko.github.io/AeroSpace/commands#focus
 alt-h = 'focus left'
@@ -123,23 +114,48 @@ alt-shift-8 = 'move-node-to-workspace 8'
 alt-shift-9 = 'move-node-to-workspace 9'
 
 # See: https://nikitabobko.github.io/AeroSpace/commands#workspace-back-and-forth
-alt-tab = 'workspace-back-and-forth'
-# See: https://nikitabobko.github.io/AeroSpace/commands#move-workspace-to-monitor
-alt-shift-tab = 'move-workspace-to-monitor --wrap-around next'
+alt-p = 'focus-back-and-forth'
+
+alt-space = 'fullscreen'
+alt-enter = 'exec-and-forget osascript $DOTFILES/system/aerospace/scripts/open_new_kitty_window.scpt'
+alt-shift-enter = 'exec-and-forget osascript $DOTFILES/system/aerospace/scripts/open_new_arc_window.scpt'
 
 # See: https://nikitabobko.github.io/AeroSpace/commands#mode
 alt-w = 'mode window'
+alt-r = 'mode resize'
 
 [mode.window.binding]
 r = ['flatten-workspace-tree', 'mode main'] # reset layout
 backspace = ['close-all-windows-but-current', 'mode main']
 
-l = ['layout tiles horizontal vertical', 'mode main']
-shift-l = ['layout floating tiling', 'mode main']
-f = ['layout tiles h_accordion', 'mode main'] # Use accordion layout as fullscreen
+h = ['join-with left', 'mode main']
+j = ['join-with down', 'mode main']
+k = ['join-with up', 'mode main']
+l = ['join-with right', 'mode main']
 
-equal = 'balance-sizes'
-leftSquareBracket = 'resize smart -100'
-rightSquareBracket = 'resize smart +100'
+a = ['layout accordion horizontal vertical', 'mode main']
+f = ['layout floating tiling', 'mode main']
+t = ['layout tiles horizontal vertical', 'mode main']
 
 esc = 'mode main'
+
+[mode.resize.binding]
+j = 'resize smart -100'
+k = 'resize smart +100'
+equal = ['balance-sizes', 'mode main']
+esc = 'mode main'
+
+[[on-window-detected]]
+if.app-id = 'com.1password.1password'
+run = ['layout floating']
+
+[[on-window-detected]]
+if.app-id = 'com.apple.finder'
+run = ['layout floating']
+
+[[on-window-detected]]
+if.app-id = 'org.pqrs.Karabiner-Elements.Settings'
+run = ['layout floating']
+
+[exec.env-vars]
+DOTFILES = '${HOME}/.dotfiles'
