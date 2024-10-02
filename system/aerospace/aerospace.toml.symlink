@@ -15,7 +15,7 @@ after-login-command = []
 after-startup-command = [
     # JankyBorders has a built-in detection of already running process,
     # so it won't be run twice on AeroSpace restart
-    'exec-and-forget borders active_color=0xdd9ece6a inactive_color=0x000000 width=8.0',
+    'exec-and-forget borders active_color=0xdd9ece6a inactive_color=0xff494d64 width=8.0',
 ]
 
 # Start AeroSpace at login
@@ -163,6 +163,14 @@ run = ['layout floating']
 
 [[on-window-detected]]
 if.app-id = 'com.apple.ActivityMonitor'
+run = ['layout floating']
+
+[[on-window-detected]]
+if.app-id = 'com.apple.Preview'
+run = ['layout floating']
+
+[[on-window-detected]]
+if.app-id = 'com.apple.QuickTimePlayerX'
 run = ['layout floating']
 
 [exec.env-vars]
