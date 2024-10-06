@@ -121,7 +121,9 @@ alt-shift-9 = 'move-node-to-workspace 9'
 alt-p = 'focus-back-and-forth'
 
 alt-space = 'fullscreen'
+# Quickly open a new kitty window
 alt-enter = 'exec-and-forget osascript $DOTFILES/system/aerospace/scripts/open_new_kitty_window.scpt'
+# Quickly open a new Arc window
 alt-shift-enter = 'exec-and-forget osascript $DOTFILES/system/aerospace/scripts/open_new_arc_window.scpt'
 
 # See: https://nikitabobko.github.io/AeroSpace/commands#mode
