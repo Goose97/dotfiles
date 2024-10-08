@@ -196,14 +196,6 @@ if.app-id = 'com.apple.QuickTimePlayerX'
 run = ['layout floating']
 
 [[on-window-detected]]
-if.app-id = 'net.kovidgoyal.kitty'
-run = ['move-node-to-workspace main']
-
-[[on-window-detected]]
-if.app-id = 'company.thebrowser.Browser'
-run = ['move-node-to-workspace main']
-
-[[on-window-detected]]
 if.app-id = 'xyz.chatboxapp.app'
 run = ['move-node-to-workspace ai']
 
