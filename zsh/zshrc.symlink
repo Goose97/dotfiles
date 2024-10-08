@@ -4,6 +4,7 @@ export DOTFILES=$HOME/.dotfiles
 source "$HOME/.zsh/zsh-defer/zsh-defer.plugin.zsh"
 zsh-defer source "$HOME/.zsh/zsh-autosuggestions/zsh-autosuggestions.zsh"
 zsh-defer source "$HOME/.zsh/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh"
+# https://github.com/jeffreytse/zsh-vi-mode
 source "$HOME/.zsh/zsh-vi-mode/zsh-vi-mode.plugin.zsh"
 
 # Stash your environment variables in ~/.localrc. This means they'll stay out
