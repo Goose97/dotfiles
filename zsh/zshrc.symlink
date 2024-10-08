@@ -1,6 +1,8 @@
 # shortcut to this dotfiles path is $DOTFILES
 export DOTFILES=$HOME/.dotfiles
 
+zmodload zsh/complist
+
 source "$HOME/.zsh/zsh-defer/zsh-defer.plugin.zsh"
 zsh-defer source "$HOME/.zsh/zsh-autosuggestions/zsh-autosuggestions.zsh"
 zsh-defer source "$HOME/.zsh/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh"
