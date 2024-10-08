@@ -204,6 +204,10 @@ if.app-name-regex-substring = 'Perplexity'
 run = ['move-node-to-workspace ai']
 
 [[on-window-detected]]
+if.app-name-regex-substring = 'Jira'
+run = ['move-node-to-workspace chat']
+
+[[on-window-detected]]
 if.app-id = 'com.hnc.Discord'
 run = ['move-node-to-workspace chat']
 
@@ -213,7 +217,7 @@ run = ['move-node-to-workspace chat']
 
 [[on-window-detected]]
 if.app-id = 'ru.keepcoder.Telegram'
-run = ['move-node-to-workspace chat']
+run = ['layout floating', 'move-node-to-workspace chat']
 
 [[on-window-detected]]
 if.app-id = 'md.obsidian'
