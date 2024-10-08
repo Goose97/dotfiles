@@ -2,7 +2,7 @@ function zvm_after_lazy_keybindings() {
   bindkey -M vicmd "L" end-of-line
   bindkey -M vicmd "H" beginning-of-line
 
-  # These commands are defined in the .zshrc file
+  # These commands are defined in the navigate-history.zsh file
   bindkey -M vicmd "j" down-line-or-beginning-search
   bindkey -M vicmd "k" up-line-or-beginning-search
 }
