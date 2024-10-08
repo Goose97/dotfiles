@@ -8,4 +8,4 @@
 #     - $d deletes the line if it's the last line of the file.
 #     - N appends the next line to the pattern space.
 #     - ba branches back to label 'a', continuing the process until no more blank lines are found at the end.
-sed -e :a -e '/^\n*$/{$d;N;ba' -e '}' | $HOME/.local/bin/nvim -u ~/.config/nvim/minimal_init.lua -Rmn -c "normal! Gzz"
+sed -e :a -e '/^\n*$/{$d;N;ba' -e '}' | $HOME/.local/bin/nvim -u ~/.config/nvim/init_readonly.lua -Rmn -c "normal! Gzz"
