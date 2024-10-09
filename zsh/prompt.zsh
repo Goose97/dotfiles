@@ -33,4 +33,12 @@ directory_name() {
   echo "%{$fg_bold[cyan]%}%1/%\/%{$reset_color%}"
 }
 
-export PROMPT='$(directory_name) $(git_dirty) › '
+_prompt='$(directory_name)'
+_git_info='$(git_dirty)'
+
+if [[ -n $_git_info ]]; then
+  _prompt+=" $_git_info"
+fi
+
+_prompt+=' › '
+export PROMPT=$_prompt
