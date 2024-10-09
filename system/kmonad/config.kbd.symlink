@@ -21,7 +21,7 @@
 )
 
 (deflayer base
-        _    _    _    _    _    _    _    pp    next mute vold volu
+        _    _    _    _    _    _    _    _     _    mute vold volu
   _     _    _    _    _    _    _    _    _     _    _    _    _    _
   _     _    _    _    _    _    _    _    _     _    _    _    _    _
   @capc _    _    _    _    _    _    _    _     _    _    _    _
