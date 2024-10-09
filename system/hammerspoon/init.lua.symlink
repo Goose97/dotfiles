@@ -1,3 +1,4 @@
+-- Symlink to ~/.hammerspoon/init.lua
 local started = false
 
 hs.window.highlight.ui.overlay = true
