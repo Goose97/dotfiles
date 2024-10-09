@@ -21,7 +21,7 @@
 )
 
 (deflayer base
-        brdn brup lp   mctl bldn blup prev pp    next mute vold volu
+        _    _    _    _    _    _    _    pp    next mute vold volu
   _     _    _    _    _    _    _    _    _     _    _    _    _    _
   _     _    _    _    _    _    _    _    _     _    _    _    _    _
   @capc _    _    _    _    _    _    _    _     _    _    _    _
