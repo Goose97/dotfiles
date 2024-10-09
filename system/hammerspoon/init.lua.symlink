@@ -1,0 +1,15 @@
+local started = false
+
+hs.window.highlight.ui.overlay = true
+hs.window.highlight.start()
+started = true
+
+hs.hotkey.bind({}, "F1", function()
+	if started then
+		hs.window.highlight.stop()
+		started = false
+	else
+		hs.window.highlight.start()
+		started = true
+	end
+end)
