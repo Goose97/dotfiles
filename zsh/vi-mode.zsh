@@ -18,7 +18,7 @@ function zvm_after_lazy_keybindings() {
   bindkey -M vicmd "H" beginning-of-line
 }
 
-ZVM_VI_EDITOR="nvim -u ~/.config/nvim/init_lite.lua -Rmn"
+ZVM_VI_EDITOR="nvim -u ~/.config/nvim/init_lite.lua -n"
 ZVM_VI_HIGHLIGHT_FOREGROUND=black
 ZVM_VI_HIGHLIGHT_BACKGROUND=yellow
 ZVM_KEYTIMEOUT=0.01
