@@ -16,7 +16,7 @@
 )
 
 (defalias
-  capc (tap-hold-next 250 esc lctl)
+  capc (tap-hold-next-release 250 esc lctl)
   lnum (layer-toggle numbers)
 )
 
