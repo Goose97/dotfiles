@@ -1,5 +1,7 @@
 export LSCOLORS="exfxcxdxbxegedabagacad"
 export CLICOLOR=true
+# export LESS_TERMCAP_so=$'\e[01;43;30m'
+# export LESS_TERMCAP_se=$'\E[0m'
 
 fpath=($DOTFILES/functions $fpath)
 
