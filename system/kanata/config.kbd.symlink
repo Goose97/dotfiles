@@ -1,11 +1,3 @@
-(defcfg
-  ;; For MacOS
-  input  (iokit-name "HID Keyboard")
-  output (kext)
-
-  fallthrough true
-)
-
 (defsrc
        f1   f2   f3   f4   f5   f6   f7   f8   f9   f10  f11  f12
   esc  1    2    3    4    5    6    7    8    9    0    -    =    bspc
@@ -13,11 +5,6 @@
   caps a    s    d    f    g    h    j    k    l    ;    '    ret
   lsft z    x    c    v    b    n    m    ,    .    /    rsft
   fn   lctl lmet lalt           spc       ralt rctl
-)
-
-(defalias
-  capc (tap-hold-next-release 250 esc lctl)
-  lnum (layer-toggle numbers)
 )
 
 (deflayer base
@@ -36,4 +23,18 @@
   _    1    2    3    4    5    _    _    _    _    _    _    _
   _    _    _    _    _    _    _    _    _    _    _    _
   _    _    _    _              _         _    _
+)
+
+(defalias
+  ;; tap for capslk, hold for lctl
+  capc (tap-hold-release 200 250 esc lctl)
+  lnum (layer-while-held numbers)
+)
+
+(defoverrides
+  (;) (lsft ;)
+  (lsft ;) (;)
+
+  (;) (rsft ;)
+  (rsft ;) (;)
 )
