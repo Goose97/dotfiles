@@ -18,7 +18,29 @@ function zvm_after_lazy_keybindings() {
   bindkey -M vicmd "H" beginning-of-line
 }
 
-ZVM_VI_EDITOR="nvim -u ~/.config/nvim/init_lite.lua -n"
+function nvim_with_kitty_scrollback() {
+  # Grab the scrollback buffer from kitty using kitty @ get-text
+  # Save it into a temp file
+  # Open the temp file and $1 in neovim in a horizontal split
+  local temp_file=$(mktemp)
+
+  # Trim trailing newlines
+  # Replace kitty specific ANSI sequences
+  kitty @ get-text --ansi | \
+    sed -e :a -e '/^\n*$/{$d;N;ba' -e '}' \
+        -e 's/\x1b\]133;[A-Za-z0-9=;]//g' -e 's/\x1b\\//g' \
+    > $temp_file
+
+  nvim -u ~/.config/nvim/init_lite.lua -n -o \
+    -c ":set filetype=terminal" \
+    -c ":normal! Gzz" \
+    -c ":wincmd w" \
+    $temp_file $1
+
+  rm $temp_file
+}
+
+ZVM_VI_EDITOR="nvim_with_kitty_scrollback"
 ZVM_VI_HIGHLIGHT_FOREGROUND=black
 ZVM_VI_HIGHLIGHT_BACKGROUND=yellow
 ZVM_KEYTIMEOUT=0.01
