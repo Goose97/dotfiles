@@ -1,5 +1,4 @@
 grv() {
-  set -e
   # trim leading and trailing spaces
   to_review_branch=$(git branch -r | fzf | sed 's/^[[:space:]]*//;s/[[:space:]]*$//')
   [[ -z "$to_review_branch" ]] && return
