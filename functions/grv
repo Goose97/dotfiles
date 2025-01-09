@@ -3,5 +3,5 @@ grv() {
   to_review_branch=$(git branch -r | fzf | sed 's/^[[:space:]]*//;s/[[:space:]]*$//')
   [[ -z "$to_review_branch" ]] && return
   git checkout --track $to_review_branch
-  nvim -c ":DiffviewOpen origin/dev...HEAD"
+  nvim -c ":DiffviewOpen origin/develop...HEAD"
 }
