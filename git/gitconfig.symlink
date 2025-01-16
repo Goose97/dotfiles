@@ -1,53 +1,53 @@
 # Local/private config goes in the include
 [include]
-        path = ~/.gitconfig.local
+  path = ~/.gitconfig.local
 [hub]
-        protocol = https
+  protocol = https
 [alias]
-        co = checkout
-        promote = !$DOTFILES/bin/git-promote
-        wtf     = !$DOTFILES/bin/git-wtf
-        rank-contributors = !$DOTFILES/bin/git-rank-contributors
-        count   = !git shortlog -sn
+  co = checkout
+  promote = !$DOTFILES/bin/git-promote
+  wtf     = !$DOTFILES/bin/git-wtf
+  rank-contributors = !$DOTFILES/bin/git-rank-contributors
+  count   = !git shortlog -sn
 [color]
-        diff = auto
-        status = auto
-        branch = auto
-        ui = true
+  diff = auto
+  status = auto
+  branch = auto
+  ui = true
 [core]
-        excludesfile = ~/.gitignore
-        editor = nvim
-        pager = delta
+  excludesfile = ~/.gitignore
+  editor = nvim
+  pager = delta
 [interactive]
-        diffFilter = delta --color-only
+  diffFilter = delta --color-only
 [delta]
-        navigate = true
+  navigate = true
 [apply]
-        whitespace = nowarn
-[merge]
-        tool = nvim
-        conflictstyle = diff3
+  whitespace = nowarn
 [mergetool]
-        prompt = false
-        keepBackup = false
+  prompt = false
+  keepBackup = false
 [mergetool "nvim"]
-    cmd = nvim -c ':DiffviewOpen'
-    trustExitCode = true
+  cmd = nvim -c "DiffviewOpen" $MERGED
+  trustExitCode = true
+[merge]
+  tool = nvim
+  conflictstyle = diff3
 [diff]
-        colorMoved = default
+  colorMoved = default
 [difftool]
-        tool = nvim
-        prompt = false
+  tool = nvim
+  prompt = false
 [difftool "nvim"]
-    cmd = nvim -c ":DiffviewOpen"
+  cmd = nvim -c ":DiffviewOpen"
 [help]
-        autocorrect = 1
+  autocorrect = 1
 [push]
-        # See `git help config` (search for push.default)
-        # for more information on different options of the below setting.
-        #
-        # Setting to git 2.0 default to suppress warning message
-        default = simple
+  # See `git help config` (search for push.default)
+  # for more information on different options of the below setting.
+  #
+  # Setting to git 2.0 default to suppress warning message
+  default = simple
 [credential]
 	helper = osxkeychain
 [diff "spaceman-diff"]
