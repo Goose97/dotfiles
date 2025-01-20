@@ -16,6 +16,10 @@ function Z() {
   fi
 
   # 4. cd to the first result
-  cd "$GT_PROJECT/packages/$first_result"
+  if [[ "$first_result" == "jfc-global-template" ]]; then
+      cd "$GT_PROJECT/packages/$first_result/template"
+  else
+      cd "$GT_PROJECT/packages/$first_result"
+  fi
 }
 
