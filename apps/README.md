@@ -1,28 +1,24 @@
 ## List of applications that I need
 
-### Google Chrome
-- Link: https://www.google.com/chrome/
+### Arc
+- Link: https://arc.net/
 
 ### Communications
 - Slack: https://slack.com/
 - Discord: https://discord.com/
 
-### Karabiner-Elements (keyboard-mouse binding)
-- Link: https://karabiner-elements.pqrs.org/
-- Config file: ./karabiner.json
+### Rectangle (MacOS windows manager)
+- Link: https://rectangleapp.com/
 
-### Spectacle (MacOS windows manager)
-- Link: https://www.spectacleapp.com/
-
-### Shell
-- iterm2: https://iterm2.com/
-- Oh My Zsh: https://ohmyz.sh/
+### Terminal + Shell
+- kitty: https://sw.kovidgoyal.net/kitty/binary/
+- zsh: https://github.com/ohmyzsh/ohmyzsh/wiki/Installing-ZSH
 
 ### Homebrew (MacOS package manager)
 - Link: https://brew.sh/
 
 ### Fonts
-- Fira Code: https://github.com/tonsky/FiraCode/
+- Iosevka Term Slab: https://github.com/be5invis/Iosevka
 
-### Nix
-- Link: https://nixos.org/download.html#nix-install-macos
+### Screenshot tool
+- Shottr: https://shottr.cc/
