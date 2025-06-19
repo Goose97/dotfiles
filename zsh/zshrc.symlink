@@ -37,8 +37,6 @@ done
 autoload -U compinit
 compinit
 
-export PATH=~/.asdf/shims:$PATH
-
 # load every completion after autocomplete loads
 for file in ${(M)config_files:#*/completion.zsh}
 do
