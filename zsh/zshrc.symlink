@@ -1,6 +1,9 @@
 # shortcut to this dotfiles path is $DOTFILES
 export DOTFILES=$HOME/.dotfiles
 
+# Dart devtools will open dev tools link with this. This will use the default browser of the system.
+export CHROME_EXECUTABLE=open
+
 zmodload zsh/complist
 
 source "$HOME/.zsh/zsh-defer/zsh-defer.plugin.zsh"
