@@ -14,4 +14,4 @@
 # Replace kitty specific ANSI sequences
 sed -e :a -e '/^\n*$/{$d;N;ba' -e '}' \
     -e 's/\x1b\]133;[A-Za-z0-9=;]//g' -e 's/\x1b\\//g' \
-      | $HOME/.local/bin/nvim -u ~/.config/nvim/init_readonly.lua -Rmn -c "normal! Gzz" -c ":set filetype=terminal"
+      | /opt/homebrew/bin/nvim -u ~/.config/nvim/init_readonly.lua -Rmn -c "normal! Gzz" -c ":set filetype=terminal"
