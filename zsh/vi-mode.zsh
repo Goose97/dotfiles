@@ -31,7 +31,7 @@ function nvim_with_kitty_scrollback() {
         -e 's/\x1b\]133;[A-Za-z0-9=;]//g' -e 's/\x1b\\//g' \
     > $temp_file
 
-  nvim -u ~/.config/nvim/init_lite.lua -n -o \
+  NVIM_LISTEN_ADDRESS="" nvim -u ~/.config/nvim/init_lite.lua -n -o \
     -c ":set filetype=terminal" \
     -c ":normal! Gzz" \
     -c ":wincmd w" \
