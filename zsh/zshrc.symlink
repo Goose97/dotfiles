@@ -47,3 +47,8 @@ do
 done
 
 unset config_files
+
+# opencode
+export PATH=/Users/goose/.opencode/bin:$PATH
+
+export EDITOR=nvim-lite

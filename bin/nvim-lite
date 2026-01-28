@@ -1,0 +1,2 @@
+#!/bin/bash
+NVIM_LISTEN_ADDRESS='' exec nvim -u ~/.config/nvim/init_lite.lua "$@"
