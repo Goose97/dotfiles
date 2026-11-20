@@ -48,7 +48,9 @@ done
 
 unset config_files
 
-# opencode
-export PATH=/Users/goose/.opencode/bin:$PATH
+export PATH=/Users/goose/Library/Android/sdk/platform-tools:$PATH
 
 export EDITOR=nvim-lite
+
+# opencode
+export PATH=/Users/goose/.opencode/bin:$PATH
