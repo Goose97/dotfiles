@@ -1,0 +1,100 @@
+#!/bin/zsh
+#
+# Usage: mov2mp4 [-q <quality>] [-r <max-res>] [-f <fps>] [--hevc] <file.mov> [file2.mov ...]
+# Description: converts and compresses .mov videos to .mp4 next to the original.
+#
+#   -q <n>    quality. libx264/libx265: CRF, lower = better/bigger (default 26 / 28)
+#                      VideoToolbox:     1-100, higher = better/bigger (default 50)
+#   -r <px>   cap the shorter side to this many pixels, never upscales
+#             (default 1080, use 720 for much smaller files, 0 to keep original)
+#   -f <fps>  set frame rate, e.g. 30 (default: keep original)
+#   --hevc    encode H.265 instead of H.264: ~40-50% smaller, plays on
+#             Apple devices / modern browsers, but less universally than H.264
+#
+# Examples:
+#   mov2mp4 clip.mov                  # sensible compression, 1080p max
+#   mov2mp4 -r 720 -f 30 clip.mov     # small, good for sharing
+#   mov2mp4 --hevc -r 720 *.mov       # smallest
+#
+# Requires: ffmpeg (brew install ffmpeg)
+
+if ! command -v ffmpeg >/dev/null 2>&1; then
+  echo "mov2mp4: ffmpeg not found (brew install ffmpeg)" >&2
+  return 1
+fi
+
+local -A opts
+zparseopts -D -E -A opts q: r: f: -hevc h -help || return 1
+
+if (( $# == 0 )) || (( ${+opts[-h]} || ${+opts[--help]} )); then
+  cat >&2 <<'USAGE'
+Usage: mov2mp4 [-q <quality>] [-r <max-res>] [-f <fps>] [--hevc] <file.mov> ...
+  -q <n>    libx264/x265 CRF (lower = better, default 26/28)
+            VideoToolbox 1-100 (higher = better, default 50)
+  -r <px>   cap shorter side (default 1080, 0 = keep)
+  -f <fps>  set frame rate, e.g. 30
+  --hevc    H.265: ~40-50% smaller, slightly less compatible
+USAGE
+  return 1
+fi
+
+local res="${opts[-r]:-1080}" fps="${opts[-f]}" quality="${opts[-q]}"
+local codec=h264
+(( ${+opts[--hevc]} )) && codec=hevc
+
+# Pick an encoder: software (libx264/libx265) if this ffmpeg build has it,
+# otherwise the macOS hardware encoder (VideoToolbox).
+local -a vopts
+local encoders="$(ffmpeg -hide_banner -encoders 2>/dev/null)"
+local sw=libx264; [[ $codec == hevc ]] && sw=libx265
+if [[ "$encoders" == *" $sw "* ]]; then
+  if [[ $codec == hevc ]]; then
+    vopts=(-c:v libx265 -preset medium -crf "${quality:-28}" -tag:v hvc1 -x265-params log-level=error)
+  else
+    vopts=(-c:v libx264 -preset slow -crf "${quality:-26}")
+  fi
+elif [[ "$encoders" == *" ${codec}_videotoolbox "* ]]; then
+  # -bf 0: VideoToolbox B-frames produce invalid DTS in mp4 ("Invalid DTS ... replacing by guess")
+  vopts=(-c:v "${codec}_videotoolbox" -q:v "${quality:-50}" -bf 0)
+  [[ $codec == hevc ]] && vopts+=(-tag:v hvc1)
+else
+  echo "mov2mp4: no $codec encoder in this ffmpeg build (try: brew install ffmpeg)" >&2
+  return 1
+fi
+echo "encoder: ${vopts[2]}"
+
+# Video filters: downscale so the shorter side <= res (works for portrait too)
+local -a filters
+if [[ -n "$res" && "$res" != 0 ]]; then
+  filters+=("scale='if(gt(iw,ih),-2,min(iw,$res))':'if(gt(iw,ih),min(ih,$res),-2)'")
+fi
+[[ -n "$fps" ]] && filters+=("fps=$fps")
+local -a vf
+(( ${#filters} )) && vf=(-vf "${(j:,:)filters}")
+
+local f out rc=0 before after
+for f in "$@"; do
+  if [[ ! -f "$f" ]]; then
+    echo "mov2mp4: '$f' is not a valid file" >&2
+    rc=1; continue
+  fi
+  out="${f:r}.mp4"
+  if [[ -e "$out" ]]; then
+    echo "mov2mp4: '$out' already exists, skipping" >&2
+    rc=1; continue
+  fi
+  echo "→ $f -> $out"
+  if ffmpeg -hide_banner -loglevel warning -stats -i "$f" \
+      "${vf[@]}" "${vopts[@]}" -pix_fmt yuv420p \
+      -c:a aac -b:a 128k \
+      -movflags +faststart \
+      "$out"; then
+    before=$(stat -f %z "$f"); after=$(stat -f %z "$out")
+    printf '  %.1fMB -> %.1fMB (%d%% of original)\n' \
+      $(( before / 1048576.0 )) $(( after / 1048576.0 )) $(( after * 100 / before ))
+  else
+    rc=1
+    rm -f "$out"
+  fi
+done
+return $rc
